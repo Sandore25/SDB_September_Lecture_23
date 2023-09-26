@@ -6,6 +6,21 @@
     } <- declaration block
 */
 
+/* 
+    List of CSS Selectors
+    -Element Selector - is going to select all instances of a given tag from our HTML page
+        -body
+        -p
+        -nav
+        -div
+    -Class Selector-'.' is going to select all elements with this class name.
+        - .btn
+        - .header
+    -ID Selector- '#' is going to select the element with the same id name. We don't want to use the same ID multiple times, should be unique to specific elements.
+        - #home
+        - #unique
+*/
+
 nav {
     background-color: #afafaf;
     /* 
@@ -31,7 +46,79 @@ nav {
     font-size: 17px;
 }
 
+/* CSS Hierarchy
+    
+    Tis is going to allow CSS to use distinct levels of "priority" to style our elements. The order of priority from weakest to strongest is:
+        
+    External StyleSheet:
+        - Element
+        - Class
+        - ID
+
+        Internal Stylesheet: (CSS inside the HTML File inside of <style>
+        - Element
+        - Class
+        - ID
+
+        Inline Styling:(adding a style property to an element in my .html file)
+
+        !important
+
+        */
+
 #home {
     float: left;
     
+}
+
+p, h1 {
+    color: orangered;
+    /* background-color: black;*/
+}
+
+body {
+    background-color: lightgray;
+}
+
+.header {
+    text-align: center;
+    text-decoration: underline;
+}
+    
+#unique {
+    text-decoration: underline overline;
+    background-color: yellow;
+    color: black;
+    border-radius: 5px;
+}
+
+/* I can focus my selector to only work on .btn classes inside a specific container.  ex ElementSelector .classname {} Works on all nested children
+            ex. ElementSelector> .classname {} Only works on direct nested childern
+*/
+
+nav .btn {
+    text-shadow: 2px 2px 2px orange;
+}
+
+nav> .btn {
+    background-color: yellow;
+}
+
+a:link {
+    color: grey;
+    /* Styling an unvisited link */
+}
+
+a:visited {
+    color: orangered;
+    /* Styling a visited link */
+}
+
+a:hover {
+    color: black;
+    /* Styling a link your mouse is hovering over */
+}
+
+a:active {
+    color: chocolate;
 }
