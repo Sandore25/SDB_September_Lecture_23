@@ -179,3 +179,4 @@ console.log(inf); // Infinity
 
 let notANumber = "string" * 317;
 console.log(notANumber); //NaN (not a number)
+
