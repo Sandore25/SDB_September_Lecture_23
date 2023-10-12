@@ -37,3 +37,4 @@ function firstLast(firstName, lastName) {
 }
 
 firstLast('Eli', 'Sand');
+
