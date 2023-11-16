@@ -60,11 +60,14 @@ document.body.appendChild(h1);// adds h1 element to document
 
 h1.style.color = "blue";
 h1.style.textAlign = 'center';
+// console.log(document.body.style)
+
+let color = 'red';
 
 
 h1.style =`
 text-shadow: 2px 2px 2px yellow;
-color: blue;
+color: ${color};
 text-align: center;
 `;
 
@@ -89,15 +92,15 @@ h1.id = 'set-id';
 */
 
 let li = document.getElementsByTagName('li');
-console.log(li[0]);
+// console.log(li[0]);
 let bathroom = li[0];
 bathroom.style.color = 'red';
 //li.style.color = 'green';
 
 for(i of li) {
   i.style.color = 'green';
- // i.style.textAlign = 'center'
-}
+//  i.style.textAlign = 'center'
+} // using a for of loop to style all the list items at once
 
 /* 
 * .querySelector()
@@ -108,13 +111,77 @@ for(i of li) {
 */
 
 let firstLi = document.querySelector('li');
-//console.log(firstLi);
+console.log(firstLi);
 
-let toDolist = document.querySelector('#listTitle');
-//console.log(toDolist);
-toDolist.style.textAlign = 'center';
+let listTitle = document.querySelector('#listTitle');
+console.log(listTitle);
+listTitle.style.textAlign = 'center';
+
+let toDoList = document.querySelector('#toDoList');
+console.log(toDoList);
+
+let classListItem = document.querySelector('.listItem');
+console.log(classListItem);
 
 /* 
 *  .querySelectorAll()
       - Returns a Static nodeList (an Array) list of elements.
 */
+
+let nodeListLi = document.querySelectorAll('li');
+// nodeListLi[0].style.color ='blue';
+console.log(nodeListLi);
+
+// Creating a new list item 
+let newListItem = document.createElement('li');
+let ul = document.getElementById('ulToDo');
+
+newListItem.innerText = 'New Item';
+// ul.append(newListItem);
+ul.appendChild(newListItem);
+
+let liClass = document.getElementsByClassName('listItem');
+// console.log(liClass);
+
+//! Event Listeners
+/* 
+  Allows us to execute a function when an event occurs.
+
+  .addEventListener()
+    - DOM node method
+    - requires an event to "listen to" or type and callback function.
+
+    ex:
+    node.addEventListener('click', () => {})
+
+    Adding an item to the list:
+      Step:
+        - Capture the input
+        - Access the parent element
+        - Create a new element (li)
+        - Assign value to attributes
+          - "text from input"
+        - Append to parent parent
+*/
+let btn = document.getElementById('submit'); // don't need # due to the .getElementById
+let input = document.getElementById('listInput');
+
+/* let btn = document.getElementById('submit');
+btn.addEventListener('click', e=> {
+  // console.log(e);
+  console.log('Someone clicked')
+}) */
+
+btn.addEventListener('click', addItem);
+
+function addItem() {
+  // console.log(input.value);
+
+  let newItem = document.createElement('li');
+  newItem.textContent = input.value;
+  newItem.style=`
+    color: blue;
+    `
+
+    ul.appendChild(newItem);
+}
