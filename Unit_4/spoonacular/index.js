@@ -9,14 +9,26 @@ let storedRecipes =[];
 //! DOM Elements
 const searchForm = document.querySelector('form')
 const randomCard = document.querySelector('.random-card');
+const keptCards = document.getElementById('kept-cards');
+
 //! Functions
-//TODO Display Single Card (random)
+// randomCard and keptCard are replacing element when called on in their function RC line 31, KC line 70
+const removeElements = element => {
+  while(element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
+
+
+// Display Single Card (random)
 const displayRandomCard = recipe => {
   // console.log(recipe);
 
-  while(randomCard.firstChild) {
-    randomCard.removeChild(randomCard.firstChild);
-  }
+  // while(randomCard.firstChild) {
+    //   randomCard.removeChild(randomCard.firstChild);
+    // }
+
+    removeElements(randomCard);
 
   //* Create Elements
   let card = document.createElement('div');
@@ -51,13 +63,52 @@ const displayRandomCard = recipe => {
   randomCard.appendChild(card);
 }
 
-//TODO Display Deck of Cards
+// Display Deck of Cards
 const setTable = () => {
   console.log('Stored Recipe Array: ', storedRecipes);
-}
 
-//!Event Listeners
-searchForm.addEventListener('submit', e => {
+  removeElements(keptCards);
+  storedRecipes.map(obj => {
+
+  //* Create
+  let div = document.createElement('div');
+  let card = document.createElement('div');
+  let img = document.createElement('img');
+  let body = document.createElement('div');
+  let title = document.createElement('h5');
+  let p = document.createElement('p');
+  let a = document.createElement('a');
+  
+  
+  //* Set Attributes
+  div.className = 'col';
+  card.className = 'card';
+  img.src = obj.img; // needs an object from the array
+  img.alt = obj.title; // needs an object from the array
+  img.className = 'card-img-top';
+  body.className = 'card-body';
+  title.className = 'card-title';
+  title.textContent;
+  p.className = 'card-text';
+  a.href; //need object
+  a.target = '_blank';
+  a.textContent = 'Link to Recipe';  
+  
+  //* Append to Parent
+  p.appendChild(a);
+  body.appendChild(title);
+  body.appendChild(p);
+  card.appendChild(img);
+  card.appendChild(body);
+  
+  div.appendChild(card);
+  
+  keptCards.appendChild(div);
+});
+}
+  
+  //! Event Listeners
+  searchForm.addEventListener('submit', e => {
   e.preventDefault();
   fetch(buildURL)
     .then(res => res.json())
@@ -73,9 +124,6 @@ searchForm.addEventListener('submit', e => {
 
       // console.log(obj)
       displayRandomCard(obj);
-
-      
     })
     .catch(error => console.error(error));
-})
-
+});
